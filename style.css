@@ -1,0 +1,668 @@
+/* ------------------------------------------------ */
+/* 1. БАЗОВІ НАЛАШТУВАННЯ ТА ШРИФТИ (Night Editorial) */
+/* ------------------------------------------------ */
+/* Додаємо шрифти Playfair Display, Source Serif 4 та Manrope */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:wght@400;600&family=Manrope:wght@400;600;700&display=swap');
+
+/* НІЧНА ПАЛІТРА */
+:root {
+    --color-bg-main: #0E0E11; /* Фон */
+    --color-surface: #15151A; /* Поверхні, картки */
+    --color-text-main: #EDEDED; /* Основний текст */
+    --color-text-secondary: #9A9AA3; /* Другорядний текст */
+    --color-accent: #8C7A4F; /* АКЦЕНТ: Тьмяне золото */
+    
+    /* Типографічні розміри */
+    --font-h1: 84px;
+    --font-h2: 48px;
+    --font-body: 20px;
+    --line-height: 1.8;
+}
+
+body {
+    font-family: 'Source Serif 4', serif; /* Основний текст - для довгого читання */
+    margin: 0;
+    padding: 0;
+    line-height: var(--line-height);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-main);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    /* Ефект: Ледь помітний grain (шум) */
+    /* Цей ефект зазвичай реалізується через фонове зображення, але ми симулюємо його тінями */
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Заголовки - з характером */
+    color: var(--color-text-main); 
+    font-weight: 700;
+}
+
+h1 { font-size: var(--font-h1); }
+h2 { font-size: var(--font-h2); }
+h3 { font-size: 28px; font-family: 'Manrope', sans-serif; } /* Manrope для H3, як для сервісу */
+
+.section-padding {
+    padding: 100px 5%;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Великі вертикальні відступи */
+    padding-top: 15vh;
+    padding-bottom: 15vh; 
+}
+
+/* ------------------------------------------------ */
+/* 2. HEADER ТА НАВІГАЦІЯ (Мінімалізм) */
+/* ------------------------------------------------ */
+header {
+    background-color: var(--color-bg-main); 
+    color: var(--color-text-main);
+    padding: 25px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Тонкий розділювач */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--color-accent); 
+    transition: color 0.3s ease;
+}
+
+nav a {
+    font-family: 'Manrope', sans-serif; /* Сервісний шрифт */
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-left: 40px;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover {
+    color: var(--color-text-main); /* Без різких рухів (плавний hover) */
+    letter-spacing: 1px;
+}
+
+/* Додайте ці стилі у блок 2 */
+
+.header-logo {
+    height: 100px; /* Розмір лого */
+    vertical-align: middle;
+    margin-right: 15px;
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%); /* Базовий стан, якщо лого не золоте */
+}
+
+/* Анімація логотипу в шапці */
+.logo:hover .header-logo {
+    transform: rotate(5deg) scale(1.05); /* Легкий поворот та збільшення */
+    transition: transform 0.3s ease;
+}
+
+.logo {
+    /* ОНОВЛЕННЯ: Тепер логотип є flex-контейнером, щоб елементи були в рядок */
+    display: flex; 
+    align-items: center; 
+}
+
+/* ------------------------------------------------ */
+/* 3. CTA КНОПКИ (Стриманий акцент) */
+/* ------------------------------------------------ */
+.cta-button {
+    font-family: 'Manrope', sans-serif;
+    display: inline-block; 
+    margin-top: 40px; 
+    padding: 15px 40px; 
+    background: var(--color-accent);
+    color: var(--color-bg-main); 
+    text-decoration: none; 
+    border-radius: 2px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 0 10px rgba(140, 122, 79, 0.4); /* М'яке світіння акценту */
+    transition: all 0.4s ease; 
+}
+
+.cta-button:hover {
+    background: transparent;
+    color: var(--color-accent);
+    box-shadow: none;
+    transform: translateY(-2px);
+}
+
+/* ------------------------------------------------ */
+/* 9. СТИЛІ ДЛЯ ЗОБРАЖЕНЬ */
+/* ------------------------------------------------ */
+
+/* Загальний стиль для контейнера зображень, що розділяють секції */
+.section-divider {
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Головне зображення (розділювач) */
+.featured-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 100px auto; /* Великі відступи */
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    /* Фільтри для інтеграції в нічну палітру */
+    filter: grayscale(40%) brightness(80%) contrast(120%); 
+    transition: filter 0.5s ease-in-out, transform 0.5s ease;
+    border-radius: 5px;
+}
+
+.featured-image:hover {
+    filter: grayscale(0%) brightness(100%) contrast(100%); /* Повернення кольору при наведенні */
+    transform: scale(1.01);
+}
+
+/* Зображення всередині контенту (у рубриках) */
+.content-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+    border: 5px solid var(--color-surface); /* Темна рамка */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    filter: brightness(90%) contrast(110%);
+    border-radius: 2px;
+}
+
+figcaption {
+    font-family: var(--font-body); 
+    font-size: 0.9em; 
+    color: var(--color-text-secondary); 
+    text-align: center; 
+    margin-top: 10px;
+}
+
+/* ------------------------------------------------ */
+/* 4. СЕКЦІЯ КОНЦЕПЦІЯ (Акцент на тиші) */
+/* ------------------------------------------------ */
+#concept {
+    background-color: var(--color-bg-main);
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Тонкий розділювач */
+}
+
+#concept h1 {
+    font-family: var(--font-script);
+    font-size: 6em; /* Зменшуємо з 8em до 6em */
+    margin-bottom: 0.1em;
+    letter-spacing: 2px; /* Додаємо невеликий інтервал, щоб літери не злипались */
+    color: var(--color-accent); 
+    font-weight: 400;
+    line-height: 1.1; 
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+}
+#concept .subtitle {
+    font-size: 1.5em;
+    color: var(--color-text-secondary);
+    font-family: 'Source Serif 4', serif;
+    letter-spacing: 0;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+.concept-content {
+    margin-top: 50px;
+    padding: 40px;
+    background: var(--color-surface); /* Темна поверхня */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5); 
+    border-radius: 2px;
+    text-align: justify;
+    color: var(--color-text-main);
+    animation: fadeIn 1.5s ease-out; 
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.concept-content h3 {
+    color: var(--color-accent); /* Акцентний колір */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    padding-bottom: 10px;
+}
+
+.concept-content li::before {
+    content: "📖"; 
+    color: var(--color-accent); 
+    margin-right: 8px;
+}
+
+/* Деталі VAU: Drop Cap */
+/* Деталі VAU: Drop Cap - ОНОВЛЕННЯ */
+.drop-cap:first-letter {
+    font-size: 3em; /* Зменшуємо з 4em до 3em */
+    float: left;
+    line-height: 0.9; /* Збільшуємо, щоб менше "влазити" у текст */
+    margin-right: 12px;
+    margin-top: 5px; /* Невеликий відступ зверху */
+    color: var(--color-accent); 
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+/* Деталі VAU: Цитати */
+blockquote {
+    font-size: 1.4em;
+    font-style: italic;
+    color: var(--color-accent); /* Акцентний колір */
+    border-left: 3px solid var(--color-accent);
+    padding-left: 20px;
+    margin: 40px auto;
+    max-width: 80%;
+    line-height: 1.4;
+    text-align: left;
+    font-family: 'Source Serif 4', serif;
+}
+
+/* ------------------------------------------------ */
+/* 5. СЕКЦІЯ РУБРИКИ (Контрастний фон) */
+/* ------------------------------------------------ */
+#rubrics {
+    background-color: var(--color-bg-main);
+}
+
+#rubrics h2 {
+    color: var(--color-text-main); 
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.rubric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.rubric-item {
+    background: var(--color-surface); /* Темна поверхня */
+    padding: 35px;
+    border-radius: 2px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-left: 2px solid var(--color-accent); /* Тонка акцентна лінія */
+    transition: all 0.4s ease; 
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ефект "тихого" hover'а: трохи світліше тло, без різких рухів */
+.rubric-item:hover {
+    background: #1A1A20; 
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+
+.rubric-item h3 {
+    color: var(--color-accent); /* Акцентний колір */
+    font-size: 1.6em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+.rubric-item p {
+    color: var(--color-text-secondary);
+    font-weight: 300;
+    font-family: var(--font-body);
+}
+
+/* --- Спеціальний фон для рубрики "Аналіз" --- */
+
+.rubric-analysis-bg {
+    /* Використовуємо градієнт для затемнення + зображення */
+    /* rgba(14, 14, 17, 0.85) - це ваш основний темний колір з прозорістю 85% */
+    background: linear-gradient(rgba(14, 14, 17, 0.85), rgba(14, 14, 17, 0.85)), url('analysis-desk.jpg');
+    
+    /* Налаштування фону */
+    background-size: cover;   /* Розтягує зображення на весь блок */
+    background-position: center center; /* Центрує зображення */
+    background-repeat: no-repeat;
+    
+    /* Важливо: щоб фон-зображення перекривало стандартний фон при наведенні */
+    transition: all 0.4s ease, background-image 0.4s ease;
+}
+
+/* Ефект при наведенні: трохи висвітлюємо фон, роблячи затемнення меншим (0.7 замість 0.85) */
+.rubric-item.rubric-analysis-bg:hover {
+     background: linear-gradient(rgba(14, 14, 17, 0.7), rgba(14, 14, 17, 0.7)), url('analysis-desk.jpg');
+     /* Зберігаємо інші ефекти наведення (тінь, зсув), які вже є у .rubric-item:hover */
+     transform: translateY(-2px);
+     box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+
+/* ------------------------------------------------ */
+/* 6. СЕКЦІЯ АРХІВ / НАПРАЦЮВАННЯ */
+/* ------------------------------------------------ */
+#archive {
+    background-color: var(--color-bg-main);
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+#archive h2 {
+    color: var(--color-text-main);
+}
+
+.archive-list {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.archive-list li {
+    background-color: var(--color-surface); /* Темна поверхня */
+    padding: 20px 30px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--color-accent);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.archive-list li:hover {
+    background-color: #1A1A20;
+    transform: translateX(5px);
+    border-left-color: var(--color-text-main);
+}
+
+.archive-list a {
+    color: var(--color-text-main);
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.archive-list a:hover {
+    color: var(--color-accent);
+}
+
+/* ------------------------------------------------ */
+/* 7. FOOTER ТА СОЦМЕРЕЖІ */
+/* ------------------------------------------------ */
+footer {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-secondary);
+    padding: 50px 10%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer h3 {
+    color: var(--color-text-main);
+}
+
+.social-links a {
+    color: var(--color-accent);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-text-main);
+    transform: scale(1.1);
+}
+
+/* Додайте ці стилі у блок 7 */
+
+.footer-logo-wrapper {
+    margin-bottom: 60px;
+}
+
+.footer-logo {
+    width: 60px; /* Більший розмір у футері */
+    filter: brightness(100%); /* Якщо лого вже золоте/світле */
+    transition: transform 0.4s ease;
+}
+
+.footer-logo:hover {
+    transform: rotate(360deg); /* Повний оберт при наведенні */
+}
+
+/* --- Стилі для рубрики з фоновим зображенням --- */
+
+/* 1. Базовий блок рубрики */
+.rubric-item-with-bg {
+    position: relative; /* Необхідно для позиціонування зображення та контенту */
+    overflow: hidden;   /* Обрізає все, що виходить за межі блоку */
+    padding: 0;         /* Прибираємо стандартні відступи, бо тепер вони будуть у контенту */
+    /* Зберігаємо інші стилі .rubric-item (рамка, тінь) */
+}
+
+/* 2. Фонове зображення */
+.rubric-bg-image {
+    position: absolute; /* Абсолютне позиціонування відносно .rubric-item-with-bg */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Зображення заповнює весь блок, зберігаючи пропорції */
+    z-index: 1;         /* Ставимо на задній план */
+    filter: brightness(40%); /* Сильне затемнення зображення для читабельності тексту */
+    transition: all 0.4s ease; /* Плавна анімація при наведенні */
+}
+
+/* 3. Контент (текст) поверх зображення */
+.rubric-content {
+    position: relative; /* Відносне позиціонування */
+    z-index: 2;         /* Ставимо на передній план, вище за зображення */
+    padding: 35px;      /* Повертаємо відступи, які були у .rubric-item */
+}
+
+/* 4. Ефекти при наведенні на блок */
+.rubric-item-with-bg:hover .rubric-bg-image {
+    transform: scale(1.05); /* Невелике збільшення зображення */
+    filter: brightness(50%); /* Трохи висвітлюємо зображення */
+}
+
+/* Корекція кольору заголовка для кращого контрасту на фото */
+.rubric-item-with-bg h3 {
+    color: var(--color-accent); /* Золотий колір */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8); /* Тінь для кращої читабельності */
+    border-bottom: none; /* Прибираємо лінію під заголовком для цього варіанту */
+}
+
+/* --- Стилізація іконок соцмереж у футері --- */
+
+/* Налаштовуємо посилання як контейнер для іконки і тексту */
+.social-link-item {
+    display: inline-flex; /* Робить посилання гнучким контейнером */
+    align-items: center;  /* Вирівнює іконку і текст по вертикалі по центру */
+    gap: 8px;             /* Відступ між іконкою і текстом */
+    text-decoration: none;
+    color: var(--color-text-secondary); /* Колір тексту (сірий, як був) */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Ефект при наведенні на все посилання (іконка + текст) */
+.social-link-item:hover {
+    color: var(--color-gold); /* Текст стає золотим */
+    transform: translateY(-2px); /* Невеликий підйом */
+}
+
+/* Стилі для самої іконки */
+.social-icon {
+    height: 24px; /* Встановлюємо фіксовану висоту іконки */
+    width: auto;  /* Ширина підлаштується автоматично */
+    border-radius: 50%; /* Про всяк випадок, щоб точно було круглим */
+    /* Невелика тінь для об'єму, щоб відділити від темного фону */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+    transition: filter 0.3s ease;
+}
+
+/* Додатковий ефект для іконки при наведенні на посилання */
+.social-link-item:hover .social-icon {
+    /* Робимо іконку трохи яскравішою при наведенні */
+    filter: brightness(1.2); 
+}
+
+/* ------------------------------------------------ */
+/* 10. СТИЛІ ДЛЯ АКОРДЕОНУ (Повернення дизайну)     */
+/* ------------------------------------------------ */
+
+/* ------------------------------------------------ */
+/* 10. СТИЛІ ДЛЯ АКОРДЕОНУ (Виправлення розмірів)   */
+/* ------------------------------------------------ */
+
+.accordion-wrapper {
+    max-width: 900px; /* Обмежуємо ширину, щоб не було на весь екран */
+    margin: 30px auto; /* Центруємо блок */
+    border-top: none; 
+}
+
+/* Блок однієї роботи */
+.accordion-item {
+    border-bottom: none;
+    margin-bottom: 15px; /* Зменшили відступ між блоками */
+}
+
+/* Кнопка-заголовок */
+.accordion-header {
+    background: rgba(255, 255, 255, 0.03);
+    border: none;
+    border-left: 4px solid var(--color-accent); /* Золота лінія зліва */
+    width: 100%;
+    /* ВИПРАВЛЕННЯ РОЗМІРІВ: */
+    padding: 15px 25px; /* Зменшили висоту блоку */
+    display: flex;
+    justify-content: space-between; /* Текст зліва, плюс справа */
+    align-items: center; /* Рівняємо по центру вертикально */
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    min-height: 70px; /* Фіксуємо мінімальну висоту для краси */
+}
+
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.08);
+    padding-left: 35px; /* Ефект руху при наведенні */
+}
+
+/* Назва роботи */
+.work-title {
+    font-family: var(--font-headers);
+    font-size: 1.1em; /* Оптимальний розмір шрифту */
+    font-weight: 600;
+    color: var(--color-text-main); /* Білий колір */
+    flex-grow: 1; /* Займає все місце */
+    margin-right: 15px; /* Відступ від плюсика */
+    line-height: 1.4; /* Щоб текст не злипався, якщо він у два рядки */
+}
+
+/* Іконка плюсика */
+.icon {
+    font-size: 1.8em; /* Трохи більший плюс */
+    color: var(--color-text-secondary);
+    transition: transform 0.3s ease, color 0.3s ease;
+    line-height: 1;
+    flex-shrink: 0; /* Щоб плюс не сплющувався */
+}
+
+/* АКТИВНИЙ СТАН */
+.accordion-header.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: #fff; /* Лінія стає білою при відкритті */
+}
+
+.accordion-header.active .work-title {
+    color: var(--color-accent); /* Заголовок стає золотим */
+}
+
+.accordion-header.active .icon {
+    transform: rotate(45deg);
+    color: var(--color-accent);
+}
+
+/* Прихований контент */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: rgba(0, 0, 0, 0.3);
+    margin-left: 4px; /* Вирівнювання по лінії */
+}
+
+/* Текст всередині */
+.inner-text {
+    padding: 25px 30px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    font-size: 0.95em;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.read-more-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: letter-spacing 0.3s ease;
+}
+
+.read-more-link:hover {
+    letter-spacing: 1px;
+}
+
+/* ------------------------------------------------ */
+/* 8. АДАПТИВНІСТЬ ТА МОБІЛКА (вимога) */
+/* ------------------------------------------------ */
+@media (max-width: 900px) {
+    h1 { font-size: 64px; } /* Адаптація великих заголовків */
+    h2 { font-size: 40px; }
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 50px; } /* Зменшення для мобілки */
+    h2 { font-size: 36px; }
+    
+    .section-padding {
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+    }
+    
+    header {
+        flex-direction: column;
+    }
+    nav {
+        margin-top: 15px;
+    }
+    nav a {
+        margin: 0 10px;
+    }
+    
+    /* Текстовий блок на мобільних пристроях займає всю ширину */
+    .concept-content, .content-wrapper {
+        padding: 20px;
+    }
+    /* Вимога: збережений контраст і нічний режим без "сіроти" - виконано через палітру */
+}
+
+@media (max-width: 900px) {
+    #concept h1 {
+        font-size: 4em; /* Зменшуємо з 6em до 4em */
+    }
+}
+@media (max-width: 600px) {
+    #concept h1 {
+        font-size: 3em; /* Зменшуємо з 4em до 3em */
+        line-height: 1.2;
+    }
+    /* ... решта стилів ... */
+}
